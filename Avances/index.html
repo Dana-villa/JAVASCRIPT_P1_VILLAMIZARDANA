@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusLands - Sistema Académico</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="login-screen" class="overlay">
+        <div class="login-card">
+            <h2>CampusLands ERP</h2>
+            <p>Seleccione su rol para ingresar:</p>
+            <select id="role-selector">
+                <option value="coordinador">Coordinador</option>
+                <option value="trainer">Trainer</option>
+                <option value="camper">Camper</option>
+            </select>
+            <button onclick="app.login()">Entrar</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h2>CampusLands</h2>
+            <nav id="menu-nav">
+                </nav>
+            <button class="logout-btn" onclick="location.reload()">Cerrar Sesión</button>
+        </aside>
+
+        <main class="content">
+            <header>
+                <h1 id="view-title">Bienvenido</h1>
+                <div id="user-info">Rol: <span id="current-role"></span></div>
+            </header>
+            
+            <section id="main-view">
+                </section>
+        </main>
+    </div>
+
+    <script src="./script/script.js"></script>
+</body>
+</html>

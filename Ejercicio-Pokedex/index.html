@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex API</title>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+  <!-- Contenedor principal de la Pokédex -->
+<div id="contenedor-pokedex">
+
+    <!-- Área de la pantalla donde se muestra el Pokémon -->
+    <div id="area-pantalla">
+
+        <!-- Marco que rodea la imagen del Pokémon -->
+        <div id="marco-imagen">
+
+            <!-- Contenedor del sprite (imagen) del Pokémon -->
+            <div id="contenedor-sprite">
+                <!-- Imagen del Pokémon, el src se asigna dinámicamente desde JS -->
+                <img id="sprite-pokemon" alt="Pokémon">
+            </div>
+
+        </div>
+
+        <!-- Elemento donde se muestra el ID y nombre del Pokémon -->
+        <!-- Su contenido se actualiza desde JS al cargar cada Pokémon -->
+        <div id="nombre-pokemon">Cargando...</div>
+
+    </div>
+
+    <!-- Input para buscar un Pokémon por nombre o número -->
+    <!-- Se activa al presionar Enter (manejado desde JS) -->
+    <input type="text" id="campo-busqueda" placeholder="Name or Number">
+
+    <!-- Botones de navegación para ir al Pokémon anterior o siguiente -->
+    <div id="nav-buttons">
+        <!-- Botón para retroceder al Pokémon anterior -->
+        <button id="boton-prev">Prev &lt;</button>
+
+        <!-- Botón para avanzar al Pokémon siguiente -->
+        <button id="boton-next">Next &gt;</button>
+    </div>
+
+</div>
+    
+</body>
+<script src="./scripts/script.js"></script>
+</html>

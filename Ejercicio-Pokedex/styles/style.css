@@ -1,0 +1,159 @@
+/* Importación de la fuente Oxanium desde Google Fonts
+   Se usan varios pesos para tener flexibilidad tipográfica */
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&display=swap');
+
+/* Reset general: elimina márgenes y padding por defecto del navegador
+   y aplica la fuente Oxanium a todos los elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oxanium', cursive;
+}
+
+/* Centra la Pokédex tanto horizontal como verticalmente
+   en toda la altura de la ventana con un fondo degradado azul cielo */
+body {
+    background: linear-gradient(#87ceeb, #bde0ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenedor principal con tamaño fijo que coincide con las
+   dimensiones de la imagen de fondo de la Pokédex.
+   position: relative permite posicionar elementos hijos de forma absoluta */
+#contenedor-pokedex {
+    width: 350px;
+    height: 526px;
+    background-image: url('./pokedex\ \(1\)\ \(2\).png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
+
+/* Área de pantalla posicionada de forma absoluta para que caiga
+   exactamente sobre la pantalla dibujada en la imagen de fondo.
+   Los valores de top y left están calculados manualmente */
+#area-pantalla {
+    position: absolute;
+    top: 114px;
+    left: 45%;
+    transform: translateX(-50%); /* Ajuste fino de centrado horizontal */
+    height: 210px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Marco que contiene el sprite del Pokémon,
+   centrado dentro del área de pantalla */
+#marco-imagen {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-top: 25px;
+    justify-content: center;
+    width: 208px;
+    height: 140px;
+}
+
+/* Centra el sprite perfectamente dentro del marco
+   usando el truco clásico top/left 50% + translate -50% */
+#contenedor-sprite {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* La imagen del Pokémon se adapta al contenedor sin distorsionarse */
+#contenedor-sprite img {
+    object-fit: contain;
+    display: block;
+     width: 90px;  
+    height: 90px;
+}
+
+/* Muestra el ID y nombre del Pokémon alineados a la derecha
+   El color gris es para el número, el span interior usa color oscuro para el nombre */
+#nombre-pokemon {
+    text-align: right;
+    margin-top: 5%;
+    margin-right: 7%;
+    font-weight: 600;
+    color: #b5b5b5; /* Color del ID */
+    white-space: nowrap; /* Evita que el texto se rompa en dos líneas */
+}
+
+/* El nombre del Pokémon dentro del span tiene color más oscuro
+   para diferenciarse visualmente del número */
+#nombre-pokemon span {
+    color: #424242;
+}
+
+/* Input de búsqueda posicionado manualmente sobre la Pokédex.
+   Los valores de top y left lo alinean con el área de input de la imagen */
+#campo-busqueda {
+    position: relative;
+    top: 350px;
+    left: 41px;
+    width: 240px;
+    height: 44px;
+    background: #f2f2f2;
+    border: 2px solid #1c1c1c;
+    border-radius: 4px;
+    padding: 9px 12px 7px;
+    font-size: 16px;
+    box-shadow: -3px 3px 0 #b5b5b5; /* Sombra que simula efecto de profundidad */
+    box-sizing: border-box;
+    user-select: none;
+}
+
+/* Elimina el borde azul por defecto del navegador al enfocar el input */
+#campo-busqueda:focus {
+    outline: none;
+}
+
+/* Contenedor de los botones Prev y Next, posicionado en la parte
+   inferior de la Pokédex con espacio entre ambos botones */
+#nav-buttons {
+    position: absolute;
+    bottom: 50px;
+    left: 40px;
+    width: 240px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Estilo base de los botones de navegación
+   La sombra inferior izquierda simula un efecto 3D */
+#nav-buttons button {
+    width: 100px;
+    height: 36px;
+    background: #424242;
+    color: white;
+    border: 1px solid #000;
+    border-radius: 3px;
+    font-family: 'Oxanium', cursive;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: -3px 3px 0 #1c1c1c;
+}
+
+/* Al pasar el mouse el botón se aclara levemente */
+#nav-buttons button:hover {
+    background: rgb(79, 79, 79);
+}
+
+/* Al hacer clic el botón se "hunde": se desplaza hacia abajo
+   y la sombra cambia de dirección para reforzar el efecto */
+#nav-buttons button:active {
+    transform: translateY(2px);
+    box-shadow: 1px -3px 0 #1c1c1c;
+}
