@@ -36,32 +36,26 @@
 
     <!-- Instrucción de selección (se muestra u oculta según el estado del juego) -->
     <p id="select-hint" class="select-hint hidden">
-      👆 Haz clic en una carta para seleccionarla / deseleccionarla
+      Haz clic en una carta para seleccionarla / deseleccionarla
     </p>
 
     <!-- === BOTONES DE ACCIÓN === -->
     <div class="buttons-area">
       <!-- Botón para iniciar o reiniciar una partida -->
       <button id="btn-new-game" class="btn btn-primary">
-        🃏 Nueva Partida
+        Nueva Partida
       </button>
 
       <!-- Botón para cambiar las cartas seleccionadas -->
       <!-- Empieza deshabilitado; se activa cuando el jugador tiene cartas -->
       <button id="btn-change-cards" class="btn btn-secondary" disabled>
-        🔄 Cambiar Cartas
+        Cambiar Cartas
       </button>
     </div>
 
     <!-- Resultado de la evaluación de la mano (se muestra después de cambiar) -->
     <div id="result-panel" class="result-panel hidden">
     </div>
-
-    <!-- Pie de página con créditos -->
-    <footer class="game-footer">
-      Desarrollado con <a href="https://deckofcardsapi.com/" target="_blank">Deck of Cards API</a>
-    </footer>
-
   </div>
 </body>
 <script src="scripts/script.js"></script>

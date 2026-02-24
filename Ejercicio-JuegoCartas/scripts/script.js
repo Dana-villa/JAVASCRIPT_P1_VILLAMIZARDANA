@@ -322,13 +322,13 @@ async function iniciarNuevaPartida() {
 
     // Habilitamos el botón de cambio y actualizamos el de nueva partida
     btnNewGame.disabled = false;
-    btnNewGame.textContent = '🔁 Nueva Partida';
+    btnNewGame.textContent = 'Nueva Partida';
     btnChangeCards.disabled = false;
 
   } catch (error) {
     // Si algo falla (sin internet, API caída, etc.) mostramos el error
     console.error('Error al iniciar la partida:', error);
-    actualizarEstadoUI(`❌ Error: ${error.message}. Comprueba tu conexión e inténtalo de nuevo.`);
+    actualizarEstadoUI(`Error: ${error.message}. Comprueba tu conexión e inténtalo de nuevo.`);
     cardsArea.innerHTML = '';
     btnNewGame.disabled = false;
   }
