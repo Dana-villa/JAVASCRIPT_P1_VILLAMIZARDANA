@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badugi - Juego de Cartas</title>
+    <link rel="shortcut icon" href="./favicons/2555798.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+     <!-- === CONTENEDOR PRINCIPAL DEL JUEGO === -->
+  <div class="game-wrapper">
+
+    <!-- Título y subtítulo del juego -->
+    <header class="game-header">
+      <h1 class="game-title">♠ BADUGI ♥</h1>
+      <p class="game-subtitle">El póker de 4 cartas</p>
+    </header>
+
+    <!-- Zona donde se muestran las reglas rápidas -->
+    <div class="rules-box">
+      <strong>Reglas rápidas:</strong>
+      Necesitas 4 cartas de <em>diferente palo</em> y <em>diferente valor</em> para tener un Badugi completo.
+      Selecciona las cartas que quieras cambiar y pulsa <em>"Cambiar Cartas"</em>.
+    </div>
+
+    <!-- Mensajes de estado del juego -->
+    <div id="status-message" class="status-message">
+      Pulsa <strong>"Nueva Partida"</strong> para comenzar.
+    </div>
+
+    <!-- === ÁREA DE CARTAS. Aquí aparecerán las imágenes de las 4 cartas del jugador. === -->
+    <div id="cards-area" class="cards-area">
+      <!-- Las cartas se generan dinámicamente -->
+    </div>
+
+    <!-- Instrucción de selección (se muestra u oculta según el estado del juego) -->
+    <p id="select-hint" class="select-hint hidden">
+      👆 Haz clic en una carta para seleccionarla / deseleccionarla
+    </p>
+
+    <!-- === BOTONES DE ACCIÓN === -->
+    <div class="buttons-area">
+      <!-- Botón para iniciar o reiniciar una partida -->
+      <button id="btn-new-game" class="btn btn-primary">
+        🃏 Nueva Partida
+      </button>
+
+      <!-- Botón para cambiar las cartas seleccionadas -->
+      <!-- Empieza deshabilitado; se activa cuando el jugador tiene cartas -->
+      <button id="btn-change-cards" class="btn btn-secondary" disabled>
+        🔄 Cambiar Cartas
+      </button>
+    </div>
+
+    <!-- Resultado de la evaluación de la mano (se muestra después de cambiar) -->
+    <div id="result-panel" class="result-panel hidden">
+    </div>
+
+    <!-- Pie de página con créditos -->
+    <footer class="game-footer">
+      Desarrollado con <a href="https://deckofcardsapi.com/" target="_blank">Deck of Cards API</a>
+    </footer>
+
+  </div>
+</body>
+<script src="scripts/script.js"></script>
+</html>

@@ -1,0 +1,330 @@
+:root {
+  --color-bg:          #0d1f14;       /* Verde oscuro de tapete */
+  --color-surface:     #122a1a;       /* Verde un poco más claro */
+  --color-border:      #2a5c38;       /* Borde sutil verde */
+  --color-gold:        #c9a84c;       /* Dorado para acentos */
+  --color-gold-light:  #f0d080;       /* Dorado claro */
+  --color-text:        #e8e0cc;       /* Crema para texto principal */
+  --color-muted:       #7a9e82;       /* Verde apagado para texto secundario */
+  --color-selected:    #f0d080;       /* Amarillo cuando una carta está seleccionada */
+  --color-btn-primary: #c9a84c;
+  --color-btn-hover:   #f0d080;
+  --font-title:        'Playfair Display', serif;
+  --font-body:         'Lato', sans-serif;
+  --radius:            12px;
+  --shadow:            0 8px 32px rgba(0,0,0,0.6);
+}
+
+/* --- RESET Y BASE: Eliminamos márgenes/rellenos por defecto del navegador. --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Fondo con textura sutil de tapete usando gradientes repetidos */
+  background-color: var(--color-bg);
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.015) 0px,
+      rgba(255,255,255,0.015) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;   
+  align-items: flex-start;  
+  padding: 2rem 1rem;
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+/* --- CONTENEDOR PRINCIPAL: Limita el ancho y agrega el estilo de "mesa de casino". --- */
+.game-wrapper {
+  width: 100%;
+  max-width: 800px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow), 0 0 60px rgba(201,168,76,0.08);
+  display: flex;
+  flex-direction: column;  
+  align-items: center;     
+  gap: 1.5rem;             
+}
+
+/* --- ENCABEZADO --- */
+.game-header {
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 1.5rem;
+  width: 100%;
+}
+
+.game-title {
+  font-family: var(--font-title);
+  font-size: clamp(2.2rem, 6vw, 3.5rem); /* Tamaño responsivo */
+  color: var(--color-gold);
+  letter-spacing: 0.12em;
+  text-shadow: 0 2px 12px rgba(201,168,76,0.4);
+}
+
+.game-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+}
+
+/* --- CAJA DE REGLAS --- */
+.rules-box {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-gold);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.2rem;
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  width: 100%;
+}
+
+.rules-box strong { color: var(--color-gold-light); }
+.rules-box em     { color: var(--color-text); font-style: normal; font-weight: 700; }
+
+/* --- MENSAJE DE ESTADO: Muestra al jugador lo que está ocurriendo en el juego. --- */
+.status-message {
+  font-size: 1rem;
+  color: var(--color-text);
+  text-align: center;
+  min-height: 1.5rem;
+  transition: opacity 0.3s;
+}
+
+.status-message strong { color: var(--color-gold-light); }
+
+/* --- ÁREA DE CARTAS: Las cartas se muestran en fila horizontal . --- */
+.cards-area {
+  display: flex;
+  flex-wrap: wrap;        
+  justify-content: center;
+  gap: 1rem;
+  min-height: 160px;        
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+/* --- CARTA INDIVIDUAL  --- */
+.card {
+  cursor: pointer;
+  border-radius: 8px;
+  border: 3px solid transparent; 
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+  user-select: none; 
+}
+
+.card img {
+  display: block;
+  height: 130px;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+
+/* Estado: carta en reposo (hover) */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.6);
+}
+
+/* Estado: carta SELECCIONADA para cambiar */
+.card.selected {
+  border-color: var(--color-selected);
+  transform: translateY(-12px);
+  box-shadow: 0 0 20px rgba(240,208,128,0.5);
+}
+
+/* Etiqueta que aparece sobre la carta cuando está seleccionada */
+.card.selected::after {
+  content: "✗ CAMBIAR";
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-selected);
+  color: #1a0f00;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* --- PISTA DE SELECCIÓN --- */
+.select-hint {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+/* --- CLASE UTILITARIA: .hidden Oculta cualquier elemento. --- */
+.hidden {
+  display: none !important;
+}
+
+/* --- BOTONES --- */
+.buttons-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Estilo base compartido por todos los botones */
+.btn {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Botón principal (dorado) */
+.btn-primary {
+  background: var(--color-gold);
+  color: #1a0f00;
+}
+
+.btn-primary:hover {
+  background: var(--color-gold-light);
+  box-shadow: 0 4px 20px rgba(240,208,128,0.4);
+}
+
+/* Botón secundario (borde dorado, fondo transparente) */
+.btn-secondary {
+  background: transparent;
+  color: var(--color-gold);
+  border: 2px solid var(--color-gold);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(201,168,76,0.1);
+  box-shadow: 0 4px 20px rgba(201,168,76,0.2);
+}
+
+/* Estado deshabilitado */
+.btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* --- PANEL DE RESULTADO: Se muestra después de evaluar la mano del jugador. --- */
+.result-panel {
+  width: 100%;
+  padding: 1.2rem 1.5rem;
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: 2px solid;
+  animation: fadeIn 0.4s ease; 
+}
+
+/* Variantes de color según el resultado */
+.result-panel.result-badugi4 {
+  background: rgba(201,168,76,0.15);
+  border-color: var(--color-gold);
+  color: var(--color-gold-light);
+}
+
+.result-panel.result-badugi3 {
+  background: rgba(100,180,100,0.1);
+  border-color: #5a9e5a;
+  color: #8fd48f;
+}
+
+.result-panel.result-badugi2 {
+  background: rgba(180,120,50,0.1);
+  border-color: #a06030;
+  color: #d08050;
+}
+
+.result-panel.result-badugi1 {
+  background: rgba(160,50,50,0.1);
+  border-color: #803030;
+  color: #c07070;
+}
+
+/* --- PIE DE PÁGINA --- */
+.game-footer {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+  width: 100%;
+}
+
+.game-footer a {
+  color: var(--color-gold);
+  text-decoration: none;
+}
+
+.game-footer a:hover {
+  text-decoration: underline;
+}
+
+/* --- ANIMACIÓN DE APARICIÓN --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- ANIMACIÓN DE CARGA (spinner sencillo). Se muestra mientras esperamos la respuesta de la API. --- */
+.loader {
+  width: 44px;
+  height: 44px;
+  border: 4px solid rgba(201,168,76,0.2);
+  border-top-color: var(--color-gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 1rem auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ----------------------------------------------------------------
+   RESPONSIVIDAD
+   Ajustes para pantallas pequeñas (móviles).
+---------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .game-wrapper {
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+  }
+
+  .card img {
+    height: 100px;
+  }
+
+  .btn {
+    padding: 0.65rem 1.4rem;
+    font-size: 0.9rem;
+  }
+}
