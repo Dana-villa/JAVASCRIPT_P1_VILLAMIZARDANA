@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA Space Explorer | Pro Edition</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <h1>NASA Explorer</h1>
+  <button class="btn btn-primary" onclick="showFavorites()">⭐ Favoritos</button>
+</nav>
+
+<section class="hero">
+  <h2>Descubre el Cosmos</h2>
+  <p>Explora la Imagen Astronómica del Día (APOD)</p>
+</section>
+
+<div class="controls">
+  <input type="date" id="start">
+  <input type="date" id="end">
+  <button class="btn btn-primary" onclick="loadRange()">🔍 Buscar Rango</button>
+  <button class="btn btn-primary" style="background:#334155; color:white;" onclick="loadToday()">📅 Hoy</button>
+
+  <!-- CAMBIO 2: Botón para modo aleatorio avanzado -->
+  <button class="btn btn-primary" style="background:#5a1b3a; color:white;" onclick="loadRandom()">🎲 Explorar Universo Aleatorio</button>
+</div>
+
+<!-- CAMBIO 1: Controles de filtro por tipo de contenido -->
+<div class="filter-controls">
+    <button class="filter-btn active" data-filter="all">Todas</button>
+    <button class="filter-btn" data-filter="image">🖼️ Solo Imágenes</button>
+    <button class="filter-btn" data-filter="video">🎬 Solo Videos</button>
+</div>
+
+<!-- CAMBIO 3: Barra de búsqueda inteligente -->
+<div class="search-controls">
+    <input type="text" id="searchInput" placeholder="🔭 Buscar por título o descripción..." autocomplete="off">
+</div>
+
+</div>
+
+<div id="statusContainer"></div>
+<div class="gallery" id="gallery"></div>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()">✕</button>
+    <div id="modalBody" class="modal-body"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
