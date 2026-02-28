@@ -3,57 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASA Space Explorer | Pro Edition</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>NASA EXPLORER · APOD</title>
+    <!-- CAMBIO: Fuentes modernas y Font Awesome para iconos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    
 </head>
 <body>
+    <div class="container">
+        <!-- HEADER con título y botón favoritos -->
+        <header class="main-header">
+            <div class="logo">
+                <h1>NASA EXPLORER</h1>
+            </div>
+            <button class="favorite-btn" id="favoritesBtn"><i class="fas fa-star"></i>⭐ Favoritos</button>
+        </header>
 
-<nav>
-  <h1>NASA Explorer</h1>
-  <button class="btn btn-primary" onclick="showFavorites()">⭐ Favoritos</button>
-</nav>
+        <!-- HERO SECTION con id para JS -->
+        <section id="heroSection">
+            <h2 class="hero-title">Descubre el Cosmos</h2>
+            <p class="hero-subtitle">Explora la Imagen Astronómica del Día (APOD)</p>
+        </section>
 
-<section class="hero">
-  <h2>Descubre el Cosmos</h2>
-  <p>Explora la Imagen Astronómica del Día (APOD)</p>
-</section>
+        <!-- PANEL DE CONTROL: fechas y botones -->
+        <div class="control-panel">
+            <div class="date-input-group">
+                <label>Desde</label>
+                <input type="date" id="startDate">
+            </div>
+            <div class="date-input-group">
+                <label>Hasta</label>
+                <input type="date" id="endDate">
+            </div>
+            <button class="btn btn-primary" id="rangeSearchBtn"><i class="fas fa-calendar-alt"></i>🔍 Buscar Rango</button>
+            <button class="btn btn-outline" id="todayBtn"><i class="fas fa-sun"></i>📅 Hoy</button>
+            <button class="btn btn-outline" id="randomBtn"><i class="fas fa-shuffle"></i>🎲  Explorar Universo Aleatorio</button>
+        </div>
 
-<div class="controls">
-  <input type="date" id="start">
-  <input type="date" id="end">
-  <button class="btn btn-primary" onclick="loadRange()">🔍 Buscar Rango</button>
-  <button class="btn btn-primary" style="background:#334155; color:white;" onclick="loadToday()">📅 Hoy</button>
+        <!-- FILTROS (Todas, Solo Imágenes, Solo Videos) -->
+        <div class="filter-group">
+            <button class="filter-btn active" data-filter="all">Todas</button>
+            <button class="filter-btn" data-filter="image">🖼️ Solo Imágenes</button>
+            <button class="filter-btn" data-filter="video">🎬 Solo Videos</button>
+        </div>
 
-  <!-- CAMBIO 2: Botón para modo aleatorio avanzado -->
-  <button class="btn btn-primary" style="background:#5a1b3a; color:white;" onclick="loadRandom()">🎲 Explorar Universo Aleatorio</button>
-</div>
+        <!-- BÚSQUEDA -->
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="🔭  Buscar por título o descripción...">
+            </div>
+        </div>
 
-<!-- CAMBIO 1: Controles de filtro por tipo de contenido -->
-<div class="filter-controls">
-    <button class="filter-btn active" data-filter="all">Todas</button>
-    <button class="filter-btn" data-filter="image">🖼️ Solo Imágenes</button>
-    <button class="filter-btn" data-filter="video">🎬 Solo Videos</button>
-</div>
+        <!-- GALERÍA (aquí se inyectan las tarjetas) -->
+        <div id="gallery" class="gallery"></div>
+    </div>
 
-<!-- CAMBIO 3: Barra de búsqueda inteligente -->
-<div class="search-controls">
-    <input type="text" id="searchInput" placeholder="🔭 Buscar por título o descripción..." autocomplete="off">
-</div>
+    <!-- MODAL (detalle) -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeModal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
 
-</div>
+    <!-- TOAST -->
+    <div id="toast" class="toast"></div>
 
-<div id="statusContainer"></div>
-<div class="gallery" id="gallery"></div>
-
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <button class="close-btn" onclick="closeModal()">✕</button>
-    <div id="modalBody" class="modal-body"></div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<script src="app.js"></script>
+    <!-- LOADER -->
+    <div id="loader" class="loader">
+        <div class="spinner"></div>
+    </div>
+    
+    <script src="app.js"></script>
 </body>
 </html>
